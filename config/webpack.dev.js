@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const config = require('./webpack.config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = webpackMerge(config, {
   mode: 'development',
@@ -10,13 +11,14 @@ module.exports = webpackMerge(config, {
   entry: {
     app: [
       'webpack-hot-middleware/client',
-      path.resolve(__dirname, '../src/App.tsx'),
+      path.resolve(__dirname, '../src/client/App.tsx'),
     ],
   },
   output: {
     filename: 'js/[name].js',
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false),

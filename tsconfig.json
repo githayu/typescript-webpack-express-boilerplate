@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "rootDirs": ["src"],
-    "outDir": "dist",
+    "baseUrl": "./",
+    "typeRoots": ["types"],
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es7", "dom"],
+    "lib": ["es2018", "dom"],
     "jsx": "react",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "src/*": ["./src/*"],
-      "srv/*": ["./server/*"]
+      "~/client/*": ["./src/client/*"],
+      "~/server/*": ["./src/server/*"],
+      "~/static/*": ["./src/static/*"],
+      "~/types/*": ["./src/types/*"]
     }
   },
-  "include": ["./src/**/*", "./server/**/*"]
+  "include": ["./src/**/*", "./types/**/*", "./stories/**/*"]
 }

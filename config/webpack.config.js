@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlgin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   output: {
@@ -11,7 +12,10 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.scss'],
     alias: {
-      src: path.resolve(__dirname, '../src/'),
+      '~/client': path.resolve(__dirname, '../src/client'),
+      '~/server': path.resolve(__dirname, '../src/server'),
+      '~/types': path.resolve(__dirname, '../src/types'),
+      '~/static': path.resolve(__dirname, '../src/static'),
     },
   },
   module: {
@@ -42,10 +46,18 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlgin(['dist']),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
+    new CleanWebpackPlgin(['dist'], {
+      root: path.resolve(__dirname, '../'),
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/client/index.html'),
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public/'),
+        toType: 'dir',
+      },
+    ]),
   ],
   optimization: {
     splitChunks: {

@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "start": "webpack --mode development --progress",
-    "build": "webpack --mode production",
-    "server": "NODE_ENV=development ts-node ./server/",
+    "start": "",
+    "dev": "webpack --config ./config/webpack.dev.js --progress",
+    "build": "yarn build:client && yarn build:server",
+    "build:server": "tsc -p tsconfig.prod.json",
+    "build:client": "webpack --config ./config/webpack.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -12,14 +14,20 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
     "@storybook/react": "^3.4.10",
     "@types/express": "^4.16.0",
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.2",
+    "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
+    "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-plugin": "^4.0.0-alpha",
     "jest": "^23.5.0",
     "mini-css-extract-plugin": "^0.4.2",
@@ -33,14 +41,11 @@
     "tslint-plugin-prettier": "^1.3.0",
     "typescript": "^3.0.3",
     "webpack": "^4.17.1",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-hot-middleware": "^2.23.1",
-    "webpack-merge": "^4.1.4",
-    "@storybook/addon-actions": "^3.4.10",
-    "@storybook/addon-links": "^3.4.10",
-    "@storybook/addons": "^3.4.10",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0"
+    "copy-webpack-plugin": "^4.6.0",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -50,9 +55,20 @@
   },
   "name": "typescript-webpack-express-boilerplate",
   "version": "1.0.0",
-  "main": "server/index.js",
-  "repository": "git@bitbucket.org:hayu/typescript-webpack-express-boilerplate.git",
-  "author": "Hayu <admin@hayu.io>",
+  "main": "dist/server/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:githayu/typescript-webpack-express-boilerplate.git"
+  },
+  "author": {
+    "name": "Hayu",
+    "email": "admin@hayu.io",
+    "url": "https://hayu.io"
+  },
   "license": "MIT",
-  "private": true
+  "private": true,
+  "peerDependencies": {
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1"
+  }
 }
