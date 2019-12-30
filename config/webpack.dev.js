@@ -1,4 +1,3 @@
-const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const config = require('./webpack.config')
@@ -6,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = webpackMerge(config, {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-source-map',
   entry: {
     app: ['webpack-hot-middleware/client', './src/client/App.tsx'],
   },

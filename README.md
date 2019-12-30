@@ -15,13 +15,11 @@
 
 ## Develop
 
-### Yarn
-
 ```sh
 yarn dev
 ```
 
-### VSCode Debugging
+## VSCode Debugging
 
 Run `nodemon`
 

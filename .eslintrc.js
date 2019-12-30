@@ -1,5 +1,6 @@
-const path = require('path')
-
+/**
+ * @type import('eslint').Linter.Config
+ */
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
@@ -8,7 +9,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['react-hooks'],
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
@@ -20,12 +21,9 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    jest: true,
   },
   globals: {
     PRODUCTION: true,
-    __static: true,
-    useDebugValue: true,
   },
   settings: {
     react: {
@@ -48,7 +46,6 @@ module.exports = {
     '@typescript-eslint/no-triple-slash-reference': 'off',
     '@typescript-eslint/prefer-interface': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    // 'react-hooks/exhaustive-deps': 'warn',
     'react/display-name': 'off',
     'no-sparse-arrays': 'off',
     'no-console': 'off',
