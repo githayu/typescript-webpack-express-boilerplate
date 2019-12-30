@@ -1,22 +1,22 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlgin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
 
+/**
+ * @type import('webpack').Configuration
+ */
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '../dist/public'),
+    path: path.join(__dirname, '../dist/public'),
     chunkFilename: 'js/[id].chunk.js',
     publicPath: '/',
   },
+  target: 'web',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.scss'],
-    alias: {
-      '~/client': path.resolve(__dirname, '../src/client'),
-      '~/server': path.resolve(__dirname, '../src/server'),
-      '~/types': path.resolve(__dirname, '../src/types'),
-      '~/static': path.resolve(__dirname, '../src/static'),
-    },
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css'],
+    plugins: [new TsconfigPathsPlugin()],
   },
   module: {
     rules: [
@@ -31,13 +31,17 @@ module.exports = {
             presets: [
               [
                 '@babel/preset-env',
-                { targets: { browsers: 'last 2 versions' } },
+                {
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                  targets: { browsers: 'last 2 versions' },
+                },
               ],
               '@babel/preset-typescript',
               '@babel/preset-react',
             ],
             plugins: [
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-proposal-optional-chaining',
               'react-hot-loader/babel',
             ],
           },
@@ -46,15 +50,17 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlgin(['dist'], {
-      root: path.resolve(__dirname, '../'),
+    new CleanWebpackPlugin({
+      dry: false,
+      cleanOnceBeforeBuildPatterns: ['../../dist/**/*'],
+      dangerouslyAllowCleanPatternsOutsideProject: true,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../src/client/index.html'),
+      template: path.resolve('src/client/index.html'),
     }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../public/'),
+        from: path.resolve('public/'),
         toType: 'dir',
       },
     ]),

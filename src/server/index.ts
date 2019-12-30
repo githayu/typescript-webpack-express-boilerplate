@@ -1,3 +1,4 @@
+import * as path from 'path'
 import * as express from 'express'
 
 export const app = express()
@@ -10,7 +11,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler))
 
   app.use('*', (req, res, next) => {
-    const filename = require('path').join(compiler.outputPath, 'index.html')
+    const filename = path.join(__dirname, '../../dist/public/index.html')
 
     compiler.outputFileSystem.readFile(filename, (err: any, result: any) => {
       if (err) {

@@ -25,7 +25,7 @@ module.exports = webpackMerge(config, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -34,14 +34,10 @@ module.exports = webpackMerge(config, {
             loader: 'css-loader',
             options: {
               modules: true,
-              importLoaders: 1,
               minimize: true,
               sourceMap: true,
               localIdentName: '[folder]-[hash:base64:5]',
             },
-          },
-          {
-            loader: 'sass-loader',
           },
         ],
       },

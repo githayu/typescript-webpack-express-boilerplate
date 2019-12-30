@@ -1,14 +1,25 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "typeRoots": ["types"],
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["es2018", "dom"],
     "jsx": "react",
+    "baseUrl": ".",
+    "target": "ES5",
+    "module": "CommonJS",
     "moduleResolution": "node",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noFallthroughCasesInSwitch": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "typeRoots": ["types"],
+    "noImplicitAny": true,
+    "lib": ["ESNext", "DOM"],
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "~/client/*": ["./src/client/*"],
@@ -17,5 +28,5 @@
       "~/types/*": ["./src/types/*"]
     }
   },
-  "include": ["./src/**/*", "./types/**/*", "./stories/**/*"]
+  "include": ["./src/**/*", "./types/**/*"]
 }

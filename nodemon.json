@@ -2,7 +2,7 @@
   "verbose": true,
   "ignore": ["server/**/*.spec.ts"],
   "watch": ["server/**/*.ts"],
-  "exec": "node --nolazy --inspect-brk -r ts-node/register ./src/server/index.ts",
+  "exec": "ts-node ./src/server/index.ts",
   "env": {
     "NODE_ENV": "development"
   },

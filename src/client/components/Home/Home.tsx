@@ -1,6 +1,8 @@
-import * as React from 'react'
-import { hot } from 'react-hot-loader'
+import React from 'react'
+import { hot } from 'react-hot-loader/root'
 
-export default hot(module)(() => {
+const Home = () => {
   return <h1>Hello</h1>
-})
+}
+
+export default hot(Home)

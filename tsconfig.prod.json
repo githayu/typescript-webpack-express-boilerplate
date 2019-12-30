@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist/server",
     "sourceMap": false,
+    "inlineSources": false,
     "declaration": false
   },
   "include": ["./src/server/**/*"]
